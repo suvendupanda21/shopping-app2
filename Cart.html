@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="cartstyle.css" />
+
+</head>
+<body>
+    Here's an example of how you can add an "Add to Cart" button to a separate page, along with the HTML code:
+
+    product.html
+    
+    <div class="product-page">
+      <img src="f1.jpg" alt="Product Image">
+      <h2>Product Name</h2>
+      <p>Product Description</p>
+      <h4>Price: ₹100</h4><button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+    
+    </div>
+    
+    cart.html
+    
+    <div class="cart-page">
+      <h2>Cart</h2>
+      <div class="cart-items">
+        <!-- Cart items will be displayed here -->
+      </div>
+    </div>
+    
+   <script>
+    let cart = [];
+    
+    function addToCart() {
+      const productImage = document.querySelector('img').src;
+      const productName = document.querySelector('h2').textContent;
+      const productPrice = document.querySelector('h4').textContent;
+      
+      cart.push({ image: productImage, name: productName, price: productPrice });
+      
+      // Update the cart display
+      updateCartDisplay();
+    }
+    
+    function updateCartDisplay() {
+      const cartElement = document.querySelector('.cart-items');
+      cartElement.innerHTML = '';
+      
+      cart.forEach(item => {
+        const cartItemHTML = `
+          <div>
+            <img src="${item.image}" alt="${item.name}">
+            <span>${item.name}</span>
+            <span>${item.price}</span>
+          </div>
+        `;
+        cartElement.innerHTML += cartItemHTML;
+      });
+    }
+   </script>
+    
+    
+    
+    
+</body>
+</html>
